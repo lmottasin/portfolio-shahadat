@@ -679,8 +679,11 @@
       function renderDetailedSections(detailedSections) {
         const container = document.getElementById('detailedSectionsContainer');
         
+        // Clear existing content to prevent accumulation
+        container.innerHTML = '';
+        
         // Helper function to create a section
-        function createSection(title, content, isArray = false) {
+        function createSection(title, content) {
           const section = document.createElement('div');
           section.className = 'prose prose-invert prose-lg max-w-none border-t border-white/10 pt-8';
           
@@ -689,7 +692,7 @@
           heading.textContent = title;
           section.appendChild(heading);
           
-          if (isArray && Array.isArray(content)) {
+          if (Array.isArray(content)) {
             const list = document.createElement('ul');
             list.className = 'space-y-3 text-slate-300 text-base lg:text-lg';
             content.forEach(item => {
@@ -716,32 +719,32 @@
         
         // Render objectives
         if (detailedSections.objectives && detailedSections.objectives.length > 0) {
-          container.appendChild(createSection('Objectives', detailedSections.objectives, true));
+          container.appendChild(createSection('Objectives', detailedSections.objectives));
         }
         
         // Render methodology
         if (detailedSections.methodology && detailedSections.methodology.length > 0) {
-          container.appendChild(createSection('Methodology & Approach', detailedSections.methodology, true));
+          container.appendChild(createSection('Methodology & Approach', detailedSections.methodology));
         }
         
         // Render key findings
         if (detailedSections.keyFindings && detailedSections.keyFindings.length > 0) {
-          container.appendChild(createSection('Key Findings', detailedSections.keyFindings, true));
+          container.appendChild(createSection('Key Findings', detailedSections.keyFindings));
         }
         
         // Render impact
         if (detailedSections.impact && detailedSections.impact.length > 0) {
-          container.appendChild(createSection('Impact & Outcomes', detailedSections.impact, true));
+          container.appendChild(createSection('Impact & Outcomes', detailedSections.impact));
         }
         
         // Render stakeholders
         if (detailedSections.stakeholders && detailedSections.stakeholders.length > 0) {
-          container.appendChild(createSection('Key Stakeholders', detailedSections.stakeholders, true));
+          container.appendChild(createSection('Key Stakeholders', detailedSections.stakeholders));
         }
         
         // Render challenges
         if (detailedSections.challenges && detailedSections.challenges.length > 0) {
-          container.appendChild(createSection('Challenges & Considerations', detailedSections.challenges, true));
+          container.appendChild(createSection('Challenges & Considerations', detailedSections.challenges));
         }
       }
     </script>
