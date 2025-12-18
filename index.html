@@ -771,11 +771,17 @@
 
       // Profile Pictures for Slideshow
       const PROFILE_PICTURES = [
-        'https://github.com/user-attachments/assets/8f50e21f-4015-485e-822e-12cfa0533f25',
-        'https://github.com/user-attachments/assets/5ac0adfc-2b9d-4bf4-9425-500dce8246f2',
-        'https://github.com/user-attachments/assets/d855851e-ab8b-4d5e-b879-0656080a35f0',
-        'https://github.com/user-attachments/assets/f7016d6a-fa64-43a4-9712-7d92f26fe5e7'
+        { url: 'https://github.com/user-attachments/assets/8f50e21f-4015-485e-822e-12cfa0533f25', alt: 'Shahadat Sayal at sunset overlooking cityscape' },
+        { url: 'https://github.com/user-attachments/assets/5ac0adfc-2b9d-4bf4-9425-500dce8246f2', alt: 'Shahadat Sayal professional portrait at sunset' },
+        { url: 'https://github.com/user-attachments/assets/d855851e-ab8b-4d5e-b879-0656080a35f0', alt: 'Shahadat Sayal with city view background' },
+        { url: 'https://github.com/user-attachments/assets/f7016d6a-fa64-43a4-9712-7d92f26fe5e7', alt: 'Shahadat Sayal portrait with urban landscape' }
       ];
+      
+      // Slideshow configuration
+      const SLIDESHOW_CONFIG = {
+        SLIDE_INTERVAL_MS: 4000,
+        TRANSITION_DURATION_MS: 1200
+      };
 
       // Initialize app
       document.addEventListener('DOMContentLoaded', function() {
@@ -1061,13 +1067,22 @@
         const slideshowContainer = document.getElementById('profileSlideshow');
         const indicatorsContainer = document.getElementById('slideshowIndicators');
         
-        if (!slideshowContainer || !indicatorsContainer) return;
+        if (!slideshowContainer || !indicatorsContainer) {
+          console.warn('Slideshow: Required DOM elements not found');
+          return;
+        }
         
         // Create slides
-        PROFILE_PICTURES.forEach((imgUrl, index) => {
+        PROFILE_PICTURES.forEach((picture, index) => {
           const slide = document.createElement('div');
           slide.className = `slideshow-slide ${index === 0 ? 'active' : ''}`;
-          slide.innerHTML = `<img src="${imgUrl}" alt="Profile ${index + 1}" loading="lazy" />`;
+          
+          const img = document.createElement('img');
+          img.src = picture.url;
+          img.alt = picture.alt;
+          img.loading = 'lazy';
+          
+          slide.appendChild(img);
           slideshowContainer.appendChild(slide);
           
           // Create indicator
@@ -1089,18 +1104,22 @@
         const slides = document.querySelectorAll('.slideshow-slide');
         const indicators = document.querySelectorAll('.slideshow-indicator');
         
-        if (slides.length === 0) return;
+        if (slides.length === 0 || index < 0 || index >= slides.length) return;
         
         // Remove active class from current slide and indicator
-        slides[currentSlide].classList.remove('active');
-        indicators[currentSlide].classList.remove('active');
+        if (slides[currentSlide] && indicators[currentSlide]) {
+          slides[currentSlide].classList.remove('active');
+          indicators[currentSlide].classList.remove('active');
+        }
         
         // Update current slide
         currentSlide = index;
         
         // Add active class to new slide and indicator
-        slides[currentSlide].classList.add('active');
-        indicators[currentSlide].classList.add('active');
+        if (slides[currentSlide] && indicators[currentSlide]) {
+          slides[currentSlide].classList.add('active');
+          indicators[currentSlide].classList.add('active');
+        }
       }
       
       function nextSlide() {
@@ -1110,7 +1129,7 @@
       
       function startSlideshow() {
         stopSlideshow(); // Clear any existing interval
-        slideshowInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+        slideshowInterval = setInterval(nextSlide, SLIDESHOW_CONFIG.SLIDE_INTERVAL_MS);
       }
       
       function stopSlideshow() {
