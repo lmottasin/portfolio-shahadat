@@ -359,8 +359,18 @@
               <div class="absolute inset-4 bg-indigo-600/20 blur-3xl rounded-3xl -z-10 group-hover:bg-indigo-500/30 transition-all duration-1000"></div>
               
               <div class="relative h-full w-full overflow-hidden rounded-3xl bg-[#111] border border-white/10">
-                <img src="./assets/images/shahadat-sayal.webp" alt="Shahadat Sayal" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 scale-in" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+                <!-- Hero Slideshow -->
+                <div class="slideshow-container h-full w-full relative" id="heroSlideshow">
+                  <!-- Slides will be inserted here by JavaScript -->
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 pointer-events-none"></div>
+                
+                <!-- Slideshow Indicators -->
+                <div class="absolute bottom-0 left-0 right-0 z-20">
+                  <div class="slideshow-indicators" id="heroSlideshowIndicators">
+                    <!-- Indicators will be inserted here by JavaScript -->
+                  </div>
+                </div>
               </div>
 
               <div class="absolute -top-4 -right-4 lg:-top-10 lg:-right-8 glass p-4 lg:p-8 rounded-2xl lg:rounded-3xl border border-white/10 shadow-2xl z-20">
@@ -421,29 +431,7 @@
                 <p class="text-slate-500 text-[10px] lg:text-xs font-bold uppercase tracking-widest relative z-10">Focus: Investigative Research</p>
               </div>
               
-              <!-- Profile Picture Slideshow -->
-              <div class="mt-12 lg:mt-16">
-                <div class="flex items-center gap-4 mb-6">
-                  <div class="h-[2px] w-6 lg:w-8 bg-indigo-500"></div>
-                  <h4 class="text-indigo-400 font-black uppercase tracking-[0.3em] lg:tracking-[0.4em] text-[10px] lg:text-xs">
-                    Visual Gallery
-                  </h4>
-                </div>
-                
-                <div class="relative rounded-2xl lg:rounded-[2rem] overflow-hidden border border-white/10 bg-[#111]">
-                  <div class="slideshow-container aspect-[4/5] relative" id="profileSlideshow">
-                    <!-- Slides will be inserted here by JavaScript -->
-                  </div>
-                  
-                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none"></div>
-                  
-                  <div class="absolute bottom-0 left-0 right-0 z-20">
-                    <div class="slideshow-indicators" id="slideshowIndicators">
-                      <!-- Indicators will be inserted here by JavaScript -->
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
 
             <!-- Right Column: Academic & Objectives -->
@@ -1072,8 +1060,8 @@
       let slideshowInterval;
       
       function initSlideshow() {
-        const slideshowContainer = document.getElementById('profileSlideshow');
-        const indicatorsContainer = document.getElementById('slideshowIndicators');
+        const slideshowContainer = document.getElementById('heroSlideshow');
+        const indicatorsContainer = document.getElementById('heroSlideshowIndicators');
         
         if (!slideshowContainer || !indicatorsContainer) {
           console.warn('Slideshow: Required DOM elements not found');
@@ -1088,7 +1076,8 @@
           const img = document.createElement('img');
           img.src = picture.url;
           img.alt = picture.alt;
-          img.loading = 'lazy';
+          img.loading = index === 0 ? 'eager' : 'lazy';
+          img.className = 'h-full w-full object-cover';
           
           slide.appendChild(img);
           slideshowContainer.appendChild(slide);
