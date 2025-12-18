@@ -29,51 +29,44 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative min-h-[500px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]"
+      className="group relative min-h-[550px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]"
     >
-      {/* Dynamic Background Image */}
+      {/* Background with Parallax effect simulation */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img 
           initial={{ scale: 1.15 }}
           whileInView={{ scale: 1 }}
-          transition={{ duration: 2.5, ease: 'easeOut' }}
+          transition={{ duration: 2, ease: 'easeOut' }}
           src={getThematicImage(project.id)}
-          className="w-full h-full object-cover opacity-20 lg:opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-50 transition-all duration-[1500ms] ease-in-out"
+          className="w-full h-full object-cover opacity-25 lg:opacity-30 grayscale group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-60 transition-all duration-[1500ms]"
           alt={project.title}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 lg:via-[#050505]/70 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 lg:via-[#050505]/70 to-transparent"></div>
       </div>
 
-      {/* Numerical Index Background */}
+      {/* Index scaling for mobile */}
       <div className="absolute top-6 lg:top-12 left-6 lg:left-12 z-10 pointer-events-none">
-        <span className="text-6xl sm:text-8xl lg:text-[12rem] font-black text-outline opacity-[0.04] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
+        <span className="text-7xl sm:text-9xl lg:text-[12rem] font-black text-outline opacity-[0.05] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
           {formattedIndex}
         </span>
       </div>
 
-      {/* Meta Header - Hidden on small mobile */}
-      <div className="absolute top-6 lg:top-12 right-6 lg:right-12 z-20 text-right opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0 hidden sm:block">
-        <span className="text-white/40 text-[8px] lg:text-[10px] font-bold uppercase tracking-[0.3em] lg:tracking-[0.5em] block mb-1">Timeline</span>
-        <span className="text-indigo-400 text-xs lg:text-sm font-black italic">{project.date}</span>
-      </div>
-
-      {/* Core Content Overlay */}
-      <div className="mt-auto p-6 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
+      <div className="mt-auto p-8 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
         <motion.div 
-          className="mb-6 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-16 lg:group-hover:w-24 transition-all duration-700 ease-in-out"
+          className="mb-6 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-20 lg:group-hover:w-24 transition-all duration-700 ease-in-out"
         ></motion.div>
         
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 lg:mb-8">
-          <span className="px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[8px] lg:text-[10px] font-black uppercase tracking-widest">
+          <span className="px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest">
             {project.category}
           </span>
           <span className="text-white/20 text-[10px] font-bold hidden sm:inline">•</span>
-          <span className="text-white/40 text-[8px] lg:text-[10px] font-bold uppercase tracking-widest hidden sm:inline">{project.type}</span>
+          <span className="text-white/40 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest hidden sm:inline">{project.type}</span>
         </div>
 
-        <h3 className="text-3xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-6 lg:mb-10 leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 drop-shadow-2xl tracking-tighter">
+        <h3 className="text-3xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-6 lg:mb-10 leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 tracking-tighter">
           {project.title}
         </h3>
 
@@ -81,29 +74,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           {project.description}
         </p>
 
-        <div className="flex flex-wrap items-center gap-6 lg:gap-10 mt-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-700 delay-200 transform lg:translate-y-4 group-hover:translate-y-0">
-          <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10 mt-4 w-full">
+          <div className="flex gap-3 w-full sm:w-auto">
             {project.links?.map((link, i) => (
               <a 
                 key={i}
                 href={link.url === '#' ? undefined : link.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className={`px-6 lg:px-10 py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer group/btn'}`}
+                className={`flex-1 sm:flex-none text-center px-6 lg:px-10 py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer group/btn'}`}
               >
                 {link.label}
                 <svg className={`w-3 h-3 lg:w-4 lg:h-4 transition-transform ${link.url !== '#' && 'group-hover/btn:translate-x-1'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </a>
-            )) || (
-              <div className="px-6 lg:px-10 py-3 lg:py-4 border border-white/10 text-white/30 text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full">
-                Archive Unavailable
-              </div>
-            )}
+            ))}
           </div>
           
           <div className="flex gap-2 lg:gap-3 items-center flex-wrap">
             {project.tags.slice(0, 3).map(tag => (
-              <span key={tag} className="text-[8px] lg:text-[9px] text-white/50 font-black px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-widest group-hover:border-white/10 group-hover:text-white/70 transition-all">
+              <span key={tag} className="text-[8px] lg:text-[9px] text-white/50 font-black px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-widest">
                 {tag}
               </span>
             ))}
