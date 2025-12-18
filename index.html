@@ -211,6 +211,72 @@
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+        
+        /* Slideshow styles */
+        .slideshow-container {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .slideshow-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slideshow-slide.active {
+          opacity: 1;
+          position: relative;
+        }
+        
+        .slideshow-slide img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1);
+          transition: transform 8s ease-out;
+        }
+        
+        .slideshow-slide.active img {
+          transform: scale(1.08);
+        }
+        
+        .slideshow-indicators {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          padding: 16px;
+        }
+        
+        .slideshow-indicator {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.3);
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .slideshow-indicator.active {
+          width: 32px;
+          border-radius: 4px;
+          background: #818cf8;
+        }
+        
+        @media (max-width: 640px) {
+          .slideshow-indicator {
+            width: 6px;
+            height: 6px;
+          }
+          
+          .slideshow-indicator.active {
+            width: 24px;
+          }
+        }
     </style>
 </head>
 <body class="bg-[#050505]">
@@ -353,6 +419,30 @@
                 </div>
                 <p class="text-white text-lg lg:text-xl font-serif italic mb-3 lg:mb-4 relative z-10 leading-relaxed">"The architect of social change through evidence."</p>
                 <p class="text-slate-500 text-[10px] lg:text-xs font-bold uppercase tracking-widest relative z-10">Focus: Investigative Research</p>
+              </div>
+              
+              <!-- Profile Picture Slideshow -->
+              <div class="mt-12 lg:mt-16">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="h-[2px] w-6 lg:w-8 bg-indigo-500"></div>
+                  <h4 class="text-indigo-400 font-black uppercase tracking-[0.3em] lg:tracking-[0.4em] text-[10px] lg:text-xs">
+                    Visual Gallery
+                  </h4>
+                </div>
+                
+                <div class="relative rounded-2xl lg:rounded-[2rem] overflow-hidden border border-white/10 bg-[#111]">
+                  <div class="slideshow-container aspect-[4/5] relative" id="profileSlideshow">
+                    <!-- Slides will be inserted here by JavaScript -->
+                  </div>
+                  
+                  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none"></div>
+                  
+                  <div class="absolute bottom-0 left-0 right-0 z-20">
+                    <div class="slideshow-indicators" id="slideshowIndicators">
+                      <!-- Indicators will be inserted here by JavaScript -->
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -679,6 +769,14 @@
       let currentFilter = 'All';
       let activeSection = 'home';
 
+      // Profile Pictures for Slideshow
+      const PROFILE_PICTURES = [
+        'https://github.com/user-attachments/assets/8f50e21f-4015-485e-822e-12cfa0533f25',
+        'https://github.com/user-attachments/assets/5ac0adfc-2b9d-4bf4-9425-500dce8246f2',
+        'https://github.com/user-attachments/assets/d855851e-ab8b-4d5e-b879-0656080a35f0',
+        'https://github.com/user-attachments/assets/f7016d6a-fa64-43a4-9712-7d92f26fe5e7'
+      ];
+
       // Initialize app
       document.addEventListener('DOMContentLoaded', function() {
         initScrollProgress();
@@ -688,6 +786,7 @@
         initProjects();
         initIntersectionObserver();
         initParallax();
+        initSlideshow();
       });
 
       // Scroll Progress Bar
@@ -952,6 +1051,73 @@
           
           lastScrollY = currentScrollY;
         });
+      }
+      
+      // Slideshow Functionality
+      let currentSlide = 0;
+      let slideshowInterval;
+      
+      function initSlideshow() {
+        const slideshowContainer = document.getElementById('profileSlideshow');
+        const indicatorsContainer = document.getElementById('slideshowIndicators');
+        
+        if (!slideshowContainer || !indicatorsContainer) return;
+        
+        // Create slides
+        PROFILE_PICTURES.forEach((imgUrl, index) => {
+          const slide = document.createElement('div');
+          slide.className = `slideshow-slide ${index === 0 ? 'active' : ''}`;
+          slide.innerHTML = `<img src="${imgUrl}" alt="Profile ${index + 1}" loading="lazy" />`;
+          slideshowContainer.appendChild(slide);
+          
+          // Create indicator
+          const indicator = document.createElement('div');
+          indicator.className = `slideshow-indicator ${index === 0 ? 'active' : ''}`;
+          indicator.addEventListener('click', () => goToSlide(index));
+          indicatorsContainer.appendChild(indicator);
+        });
+        
+        // Start autoplay
+        startSlideshow();
+        
+        // Pause on hover
+        slideshowContainer.addEventListener('mouseenter', stopSlideshow);
+        slideshowContainer.addEventListener('mouseleave', startSlideshow);
+      }
+      
+      function goToSlide(index) {
+        const slides = document.querySelectorAll('.slideshow-slide');
+        const indicators = document.querySelectorAll('.slideshow-indicator');
+        
+        if (slides.length === 0) return;
+        
+        // Remove active class from current slide and indicator
+        slides[currentSlide].classList.remove('active');
+        indicators[currentSlide].classList.remove('active');
+        
+        // Update current slide
+        currentSlide = index;
+        
+        // Add active class to new slide and indicator
+        slides[currentSlide].classList.add('active');
+        indicators[currentSlide].classList.add('active');
+      }
+      
+      function nextSlide() {
+        const nextIndex = (currentSlide + 1) % PROFILE_PICTURES.length;
+        goToSlide(nextIndex);
+      }
+      
+      function startSlideshow() {
+        stopSlideshow(); // Clear any existing interval
+        slideshowInterval = setInterval(nextSlide, 4000); // Change slide every 4 seconds
+      }
+      
+      function stopSlideshow() {
+        if (slideshowInterval) {
+          clearInterval(slideshowInterval);
+          slideshowInterval = null;
+        }
       }
     </script>
 </body>
