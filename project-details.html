@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Shahadat Sayal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #818cf8;
+            --bg: #050505;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #f1f5f9;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        .fade-in-up {
+          animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .fade-in {
+          animation: fadeIn 1s forwards;
+        }
+        
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+        
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #050505 0%, rgba(5,5,5,0.8) 50%, rgba(5,5,5,0.4) 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#050505]">
+    <div class="noise"></div>
+    
+    <!-- Header -->
+    <header class="fixed top-4 lg:top-8 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-[90%] max-w-4xl">
+      <nav class="glass flex items-center justify-between px-3 lg:px-8 h-16 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+        <div class="flex-shrink-0">
+          <span class="text-sm lg:text-lg font-serif font-black tracking-tighter text-white">
+            S.<span class="text-indigo-500 italic">SAYAL</span>
+          </span>
+        </div>
+        
+        <div class="flex items-center space-x-2">
+          <a href="index.html" class="px-4 lg:px-6 py-2 text-[10px] font-bold uppercase tracking-[0.2em] transition-all rounded-full text-slate-400 hover:text-white flex items-center gap-2">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            <span class="relative z-10">Back</span>
+          </a>
+          <a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="px-3 lg:px-6 py-2 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-wide lg:tracking-widest rounded-full hover:bg-white hover:text-black transition-all shadow-lg shadow-indigo-600/20">
+            Contact
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section with Background Image -->
+      <section class="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col justify-end px-6 overflow-hidden pt-32 pb-16">
+        <div class="absolute inset-0 z-0" id="heroBackground">
+          <img id="projectHeroImage" src="" alt="" class="w-full h-full object-cover opacity-40" />
+          <div class="hero-image-overlay"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto w-full relative z-10 fade-in">
+          <div class="mb-6 flex flex-wrap items-center gap-3">
+            <span id="projectCategory" class="px-4 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[10px] font-black uppercase tracking-widest"></span>
+            <span id="projectType" class="text-slate-400 text-sm font-medium"></span>
+            <span class="text-slate-600">•</span>
+            <span id="projectDate" class="text-slate-400 text-sm font-medium"></span>
+          </div>
+          
+          <h1 id="projectTitle" class="text-4xl sm:text-5xl lg:text-7xl font-serif font-black italic text-white leading-[0.95] mb-6 tracking-tighter max-w-4xl">
+          </h1>
+        </div>
+      </section>
+
+      <!-- Content Section -->
+      <section class="py-16 lg:py-24 relative">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            <!-- Main Content -->
+            <div class="lg:col-span-8 space-y-8 fade-in-up animate-delay-1">
+              <!-- Description -->
+              <div class="prose prose-invert prose-lg max-w-none">
+                <h2 class="text-2xl lg:text-3xl font-serif font-bold text-white mb-6">Project Overview</h2>
+                <div id="projectDescription" class="text-slate-300 leading-relaxed space-y-4 text-base lg:text-lg">
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div id="projectTagsContainer" class="flex flex-wrap gap-3 pt-6 border-t border-white/10">
+              </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-4 space-y-6 fade-in-up animate-delay-2">
+              <!-- Project Info Card -->
+              <div class="glass p-6 lg:p-8 rounded-2xl border border-white/10 space-y-6">
+                <h3 class="text-white font-black text-xs uppercase tracking-widest mb-4">Project Details</h3>
+                
+                <div class="space-y-4">
+                  <div>
+                    <span class="text-slate-500 text-xs uppercase tracking-wider block mb-1">Category</span>
+                    <span id="sidebarCategory" class="text-white font-semibold"></span>
+                  </div>
+                  
+                  <div>
+                    <span class="text-slate-500 text-xs uppercase tracking-wider block mb-1">Type</span>
+                    <span id="sidebarType" class="text-white font-semibold"></span>
+                  </div>
+                  
+                  <div>
+                    <span class="text-slate-500 text-xs uppercase tracking-wider block mb-1">Date</span>
+                    <span id="sidebarDate" class="text-white font-semibold"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Links Card -->
+              <div id="projectLinksContainer" class="glass p-6 lg:p-8 rounded-2xl border border-white/10">
+                <h3 class="text-white font-black text-xs uppercase tracking-widest mb-4">Resources</h3>
+                <div id="projectLinks" class="space-y-3">
+                </div>
+              </div>
+
+              <!-- Back Button -->
+              <a href="index.html#projects" class="block w-full text-center px-6 py-4 border border-white/20 text-white font-black text-xs uppercase tracking-widest rounded-full hover:bg-white/10 transition-all">
+                ← Back to Portfolio
+              </a>
+            </div>
+          </div>
+
+          <!-- Image Gallery (if multiple images available) -->
+          <div id="imageGalleryContainer" class="mt-16 lg:mt-24 fade-in-up animate-delay-3">
+            <h2 class="text-2xl lg:text-3xl font-serif font-bold text-white mb-8">Project Images</h2>
+            <div id="imageGallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0c10] pt-16 pb-12 border-t border-white/5">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <p class="text-slate-600 text-xs font-medium uppercase tracking-[0.2em]">
+            © 2025 Shahadat Sayal — Portfolio v2.0
+          </p>
+          <div class="flex gap-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">Available for Collaborations</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Projects Data - Same as index.html
+      const PROJECTS = [
+        {
+          id: "1",
+          title: "Media Coverage of Climate Change in Bangladesh",
+          category: "Communication Research",
+          date: "Summer 2018",
+          type: "Research Proposal",
+          description: "A comprehensive research proposal examining how Bangladeshi media covers climate change issues. The study explores media's role in agenda-setting and framing environmental news, using systematic content analysis of newspapers and television channels to assess coverage quality and frequency.",
+          tags: ["Research", "Climate", "Media Analysis"],
+          links: [{ label: "View Research", url: "#" }]
+        },
+        {
+          id: "2",
+          title: "We Are Adapting",
+          category: "Mass Communication",
+          date: "Spring 2019",
+          type: "Mask Exhibition",
+          description: "Visual communication project based on 'Broken Windows Theory'. Using painted masks exhibited at Shilpakala Academy, this project demonstrated the impacts of global warming and industrial waste on the ozone layer through an abstract artistic medium.",
+          tags: ["Visual Art", "Exhibition", "Climate"],
+          links: [{ label: "Exhibition", url: "#" }]
+        },
+        {
+          id: "3",
+          title: "The Unseen Effects of Superstition",
+          category: "Public Relations",
+          date: "Summer 2019",
+          type: "Poster Campaign",
+          description: "A visual communication campaign applying Social Norms Theory to challenge superstitious beliefs. The poster series highlights how irrational beliefs impact daily decision-making and social behavior, encouraging critical thinking through compelling graphic design.",
+          tags: ["Poster", "Social Theory", "Campaign"],
+          links: [{ label: "View Posters", url: "#" }]
+        },
+        {
+          id: "4",
+          title: "Digital Security Act Explainer",
+          category: "Communication and Technology",
+          date: "Fall 2020",
+          type: "Video Explainer",
+          description: "A detailed video explainer breaking down the laws of the Digital Security Act 2018. It analyzes how these legal frameworks impact social media expression and the broader landscape of communication convergence in the modern era.",
+          tags: ["Video", "Law", "Social Media"],
+          links: [{ label: "Watch Video", url: "https://www.facebook.com/share/v/16bd3FbaLR/" }]
+        },
+        {
+          id: "5",
+          title: "Interview with a Book Binder of Neelkhet",
+          category: "English for Media",
+          date: "Summer 2019",
+          type: "Informal Interview",
+          description: "An intimate journalistic interview exploring the life and craft of a traditional book binder in Dhaka's historic Neelkhet book market. The piece captures the cultural significance of the craft and the challenges faced by artisans in the digital age.",
+          tags: ["Interview", "Culture", "Journalism"],
+          links: [{ label: "Read Interview", url: "#" }]
+        },
+        {
+          id: "6",
+          title: "Obstacles of Being",
+          category: "Convergence Communication",
+          date: "Summer 2019",
+          type: "Performance Art",
+          description: "A multimedia performance art piece applying Social Norms Theory to explore societal barriers and personal identity. Through choreography and digital media, the project examines how social expectations shape individual behavior and self-expression.",
+          tags: ["Performance", "Digital Art", "Identity"],
+          links: [{ label: "View Performance", url: "#" }]
+        },
+        {
+          id: "7",
+          title: "Fall 2019 Curriculum Integration Forum",
+          category: "Bangla for Media",
+          date: "Fall 2019",
+          type: "Hard News Report",
+          description: "A journalistic hard news report covering the university's Curriculum Integration Forum. The piece demonstrates professional news writing skills in Bengali, following standard journalistic conventions for accuracy, objectivity, and clarity.",
+          tags: ["News Writing", "Bengali", "Journalism"],
+          links: [{ label: "Read Report", url: "#" }]
+        },
+        {
+          id: "8",
+          title: "Escape",
+          category: "Convergence Communication",
+          date: "Spring 2020",
+          type: "Video Art",
+          description: "An exploration of 'Communication Apprehension' through visual storytelling. Filmed on an island of the Padma river, this video art piece uses the open field to symbolize running away from reality and the internal struggle to overcome communicative hesitation.",
+          tags: ["Cinematography", "Storytelling", "Video Art"],
+          links: [{ label: "Watch Video", url: "https://youtu.be/df4TBdR7buY" }]
+        },
+        {
+          id: "9",
+          title: "Violence Against Women During COVID-19",
+          category: "Development Communication",
+          date: "Summer 2021",
+          type: "Campaign Plan",
+          description: "An awareness campaign through social mobilization to reduce increased violence against women during COVID-19's first wave. Case study on Rupganj Upazila, Narayanganj, using participatory approaches to empower communities and provide support resources.",
+          tags: ["C4D", "Gender", "COVID-19"],
+          links: [{ label: "View Campaign", url: "#" }]
+        },
+        {
+          id: "10",
+          title: "Renouncing Polythene Bags in Sanarpar",
+          category: "C4D Planning and Process",
+          date: "Spring 2021",
+          type: "Campaign Design",
+          description: "A Communication for Development campaign encouraging Sanarpar residents to abandon polythene bags. The strategic plan combines health messaging, community mobilization, and behavior change communication to promote environmental sustainability.",
+          tags: ["Environment", "Behavior Change", "C4D"],
+          links: [{ label: "View Strategy", url: "#" }]
+        },
+        {
+          id: "11",
+          title: "Social Media & Mental Health",
+          category: "Participatory Research",
+          date: "Summer 2021",
+          type: "Research Paper",
+          description: "A full-scale participatory research paper investigating the impact of excessive social media usage on the mental health of university students in Dhaka during the pandemic. The study identifies patterns of FOMO, anxiety, and depression through in-depth qualitative interviews.",
+          tags: ["Research", "Mental Health", "Qualitative"],
+          links: [{ label: "Case Study", url: "#" }]
+        },
+        {
+          id: "12",
+          title: "ACAPP (Anti-Child Abuse Program)",
+          category: "ICT for Development",
+          date: "Fall 2021",
+          type: "Application Design",
+          description: "Design and planning for a digital platform (ACAPP) intended to prevent child abuse and rescue victims. Features include a toll-free hotline, legal aid connections, and a media section for awareness-raising through digital posters and videos.",
+          tags: ["ICT4D", "App Design", "Social Impact"],
+          links: [{ label: "View Design", url: "#" }]
+        },
+        {
+          id: "13",
+          title: "Women's Attitude Toward Cesarean Delivery",
+          category: "Health Communication",
+          date: "Fall 2021",
+          type: "Research Paper",
+          description: "A qualitative research study exploring women's knowledge and attitudes toward cesarean section delivery in Dhaka, Bangladesh. The study examines decision-making factors, cultural influences, and health communication strategies to improve maternal healthcare awareness.",
+          tags: ["Health", "Qualitative", "Research"],
+          links: [{ label: "Read Study", url: "#" }]
+        },
+        {
+          id: "14",
+          title: "The July Massacre Archive",
+          category: "Created Private Media",
+          date: "Summer 2025",
+          type: "Semi Documentary",
+          description: "A historical documentary project documenting the July Uprising in Bangladesh. This initiative focuses on creating a reliable digital repository of testimonies, photos, and stories to record the sacrifices of student activists and preserve the spirit of the uprising against historical erasure.",
+          tags: ["Documentary", "Journalism", "Archive"],
+          links: [{ label: "Production Link", url: "https://drive.google.com/file/d/1_Aka6AAYSEqCfw31zA82l6CHyy9dAZGn/view" }]
+        },
+        {
+          id: "15",
+          title: "Gujob Limited (Disinformation Satire)",
+          category: "Entertainment Education",
+          date: "Spring 2025",
+          type: "Video Production",
+          description: "A satirical edu-tainment short film exploring the dangers of disinformation and unethical journalism. The narrative follows an idealistic journalist using fact-checking tools to expose a fabricated scandal, highlighting the urgent need for media literacy in the digital age.",
+          tags: ["Film", "Satire", "Fact-Checking"],
+          links: [{ label: "Watch Short Film", url: "https://www.facebook.com/share/v/1D595E4a6r/" }]
+        },
+        {
+          id: "16",
+          title: "Every Drop Counts",
+          category: "Environmental Communication",
+          date: "Spring 2025",
+          type: "Campaign Strategy",
+          description: "A comprehensive campaign strategy for sustainable water resource management in Bangladesh. It addresses the critical levels of river pollution in hubs like Hazaribagh and advocates for community-led initiatives and integrated water governance to protect biodiversity.",
+          tags: ["Environment", "Campaign", "Sustainability"],
+          links: [{ label: "Documentary Reel", url: "https://www.facebook.com/reel/1365902364679257" }]
+        }
+      ];
+
+      // Image mapping for projects
+      const projectImages = {
+        "1": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?q=80&w=1600&auto=format&fit=crop",
+        "2": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=1600&auto=format&fit=crop",
+        "3": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600&auto=format&fit=crop",
+        "4": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop",
+        "5": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1600&auto=format&fit=crop",
+        "6": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1600&auto=format&fit=crop",
+        "7": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop",
+        "8": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
+        "9": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop",
+        "10": "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1600&auto=format&fit=crop",
+        "11": "https://images.unsplash.com/photo-1527137342181-19aab11a8ee1?q=80&w=1600&auto=format&fit=crop",
+        "12": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1600&auto=format&fit=crop",
+        "13": "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=1600&auto=format&fit=crop",
+        "14": "https://images.unsplash.com/photo-1547550124-792161ad63b2?q=80&w=1600&auto=format&fit=crop",
+        "15": "https://images.unsplash.com/photo-1585829365234-781fcddec338?q=80&w=1600&auto=format&fit=crop",
+        "16": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop"
+      };
+
+      // Load project details on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        
+        if (projectId) {
+          loadProjectDetails(projectId);
+        } else {
+          // Redirect to home if no project ID
+          window.location.href = 'index.html';
+        }
+      });
+
+      function loadProjectDetails(projectId) {
+        const project = PROJECTS.find(p => p.id === projectId);
+        
+        if (!project) {
+          window.location.href = 'index.html';
+          return;
+        }
+
+        // Update page title
+        document.title = `${project.title} | Shahadat Sayal`;
+
+        // Set hero background image
+        const heroImage = document.getElementById('projectHeroImage');
+        heroImage.src = projectImages[project.id] || 'https://images.unsplash.com/photo-1495020689067-2e223f005ac2?q=80&w=1600&auto=format&fit=crop';
+        heroImage.alt = project.title;
+
+        // Set project information
+        document.getElementById('projectCategory').textContent = project.category;
+        document.getElementById('projectType').textContent = project.type;
+        document.getElementById('projectDate').textContent = project.date;
+        document.getElementById('projectTitle').textContent = project.title;
+        
+        // Set description using textContent to avoid XSS
+        const descriptionElement = document.getElementById('projectDescription');
+        const descParagraph = document.createElement('p');
+        descParagraph.textContent = project.description;
+        descriptionElement.appendChild(descParagraph);
+
+        // Sidebar
+        document.getElementById('sidebarCategory').textContent = project.category;
+        document.getElementById('sidebarType').textContent = project.type;
+        document.getElementById('sidebarDate').textContent = project.date;
+
+        // Tags
+        const tagsContainer = document.getElementById('projectTagsContainer');
+        project.tags.forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300 font-medium hover:bg-white/10 transition-colors';
+          tagElement.textContent = tag;
+          tagsContainer.appendChild(tagElement);
+        });
+
+        // Links
+        const linksContainer = document.getElementById('projectLinks');
+        if (project.links && project.links.length > 0) {
+          project.links.forEach(link => {
+            const linkElement = document.createElement('a');
+            linkElement.href = link.url === '#' ? 'javascript:void(0)' : link.url;
+            if (link.url !== '#') {
+              linkElement.target = '_blank';
+              linkElement.rel = 'noopener noreferrer';
+            }
+            linkElement.className = `block px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}`;
+            
+            // Create elements safely to avoid XSS
+            const div = document.createElement('div');
+            div.className = 'flex items-center justify-between';
+            
+            const span = document.createElement('span');
+            span.textContent = link.label;
+            
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'w-4 h-4');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('d', 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14');
+            svg.appendChild(path);
+            
+            div.appendChild(span);
+            div.appendChild(svg);
+            linkElement.appendChild(div);
+            linksContainer.appendChild(linkElement);
+          });
+        } else {
+          document.getElementById('projectLinksContainer').style.display = 'none';
+        }
+
+        // Image gallery - for now, just show the main image
+        const galleryContainer = document.getElementById('imageGallery');
+        const galleryImage = document.createElement('div');
+        galleryImage.className = 'col-span-full';
+        
+        const imageWrapper = document.createElement('div');
+        imageWrapper.className = 'relative aspect-video overflow-hidden rounded-2xl border border-white/10';
+        
+        const img = document.createElement('img');
+        img.src = projectImages[project.id];
+        img.alt = project.title;
+        img.className = 'w-full h-full object-cover';
+        
+        imageWrapper.appendChild(img);
+        galleryImage.appendChild(imageWrapper);
+        galleryContainer.appendChild(galleryImage);
+      }
+    </script>
+</body>
+</html>
