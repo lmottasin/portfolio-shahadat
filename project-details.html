@@ -427,7 +427,12 @@
         document.getElementById('projectType').textContent = project.type;
         document.getElementById('projectDate').textContent = project.date;
         document.getElementById('projectTitle').textContent = project.title;
-        document.getElementById('projectDescription').innerHTML = `<p>${project.description}</p>`;
+        
+        // Set description using textContent to avoid XSS
+        const descriptionElement = document.getElementById('projectDescription');
+        const descParagraph = document.createElement('p');
+        descParagraph.textContent = project.description;
+        descriptionElement.appendChild(descParagraph);
 
         // Sidebar
         document.getElementById('sidebarCategory').textContent = project.category;
@@ -454,12 +459,29 @@
               linkElement.rel = 'noopener noreferrer';
             }
             linkElement.className = `block px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-white hover:bg-indigo-600 hover:border-indigo-600 transition-all ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}`;
-            linkElement.innerHTML = `
-              <div class="flex items-center justify-between">
-                <span>${link.label}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-              </div>
-            `;
+            
+            // Create elements safely to avoid XSS
+            const div = document.createElement('div');
+            div.className = 'flex items-center justify-between';
+            
+            const span = document.createElement('span');
+            span.textContent = link.label;
+            
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('class', 'w-4 h-4');
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+            svg.setAttribute('viewBox', '0 0 24 24');
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('d', 'M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14');
+            svg.appendChild(path);
+            
+            div.appendChild(span);
+            div.appendChild(svg);
+            linkElement.appendChild(div);
             linksContainer.appendChild(linkElement);
           });
         } else {
@@ -470,11 +492,17 @@
         const galleryContainer = document.getElementById('imageGallery');
         const galleryImage = document.createElement('div');
         galleryImage.className = 'col-span-full';
-        galleryImage.innerHTML = `
-          <div class="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
-            <img src="${projectImages[project.id]}" alt="${project.title}" class="w-full h-full object-cover" />
-          </div>
-        `;
+        
+        const imageWrapper = document.createElement('div');
+        imageWrapper.className = 'relative aspect-video overflow-hidden rounded-2xl border border-white/10';
+        
+        const img = document.createElement('img');
+        img.src = projectImages[project.id];
+        img.alt = project.title;
+        img.className = 'w-full h-full object-cover';
+        
+        imageWrapper.appendChild(img);
+        galleryImage.appendChild(imageWrapper);
         galleryContainer.appendChild(galleryImage);
       }
     </script>
