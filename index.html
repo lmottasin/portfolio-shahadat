@@ -196,6 +196,21 @@
           opacity: 1;
           transform: translateX(0);
         }
+        
+        /* Line clamp utilities */
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-[#050505]">
@@ -358,7 +373,7 @@
                     </div>
                     <div class="space-y-1 lg:space-y-2">
                       <span class="text-[9px] lg:text-[10px] text-slate-500 uppercase tracking-widest block">Minor Discipline</span>
-                      <span class="text-white text-base lg:text-lg font-semibold tracking-tight">English</span>
+                      <span class="text-white text-base lg:text-lg font-semibold tracking-tight">Sustainable Development</span>
                     </div>
                   </div>
                 </div>
@@ -394,7 +409,7 @@
           </div>
           
           <!-- Projects Grid -->
-          <div class="flex flex-col gap-px bg-white/5 border border-white/5 overflow-hidden rounded-3xl" id="projectsContainer">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="projectsContainer">
             <!-- Projects will be inserted here by JavaScript -->
           </div>
         </div>
@@ -454,7 +469,7 @@
         id: "181 012 057",
         department: "Media Studies and Journalism",
         major: "Communication for Development",
-        minor: "English",
+        minor: "Sustainable Development",
         objectives: [
           "To become a good thinker and a good decision-maker.",
           "To explore the vast arena of knowledge in the field of communication, media studies, and journalism.",
@@ -467,8 +482,138 @@
         ]
       };
 
-      // Projects Data
+      // Projects Data - All 16 Projects
       const PROJECTS = [
+        {
+          id: "1",
+          title: "Media Coverage of Climate Change in Bangladesh",
+          category: "Communication Research",
+          date: "Summer 2018",
+          type: "Research Proposal",
+          description: "A comprehensive research proposal examining how Bangladeshi media covers climate change issues. The study explores media's role in agenda-setting and framing environmental news, using systematic content analysis of newspapers and television channels to assess coverage quality and frequency.",
+          tags: ["Research", "Climate", "Media Analysis"],
+          links: [{ label: "View Research", url: "#" }]
+        },
+        {
+          id: "2",
+          title: "We Are Adapting",
+          category: "Mass Communication",
+          date: "Spring 2019",
+          type: "Mask Exhibition",
+          description: "Visual communication project based on 'Broken Windows Theory'. Using painted masks exhibited at Shilpakala Academy, this project demonstrated the impacts of global warming and industrial waste on the ozone layer through an abstract artistic medium.",
+          tags: ["Visual Art", "Exhibition", "Climate"],
+          links: [{ label: "Exhibition", url: "#" }]
+        },
+        {
+          id: "3",
+          title: "The Unseen Effects of Superstition",
+          category: "Public Relations",
+          date: "Summer 2019",
+          type: "Poster Campaign",
+          description: "A visual communication campaign applying Social Norms Theory to challenge superstitious beliefs. The poster series highlights how irrational beliefs impact daily decision-making and social behavior, encouraging critical thinking through compelling graphic design.",
+          tags: ["Poster", "Social Theory", "Campaign"],
+          links: [{ label: "View Posters", url: "#" }]
+        },
+        {
+          id: "4",
+          title: "Digital Security Act Explainer",
+          category: "Communication and Technology",
+          date: "Fall 2020",
+          type: "Video Explainer",
+          description: "A detailed video explainer breaking down the laws of the Digital Security Act 2018. It analyzes how these legal frameworks impact social media expression and the broader landscape of communication convergence in the modern era.",
+          tags: ["Video", "Law", "Social Media"],
+          links: [{ label: "Watch Video", url: "https://www.facebook.com/share/v/16bd3FbaLR/" }]
+        },
+        {
+          id: "5",
+          title: "Interview with a Book Binder of Neelkhet",
+          category: "English for Media",
+          date: "Summer 2019",
+          type: "Informal Interview",
+          description: "An intimate journalistic interview exploring the life and craft of a traditional book binder in Dhaka's historic Neelkhet book market. The piece captures the cultural significance of the craft and the challenges faced by artisans in the digital age.",
+          tags: ["Interview", "Culture", "Journalism"],
+          links: [{ label: "Read Interview", url: "#" }]
+        },
+        {
+          id: "6",
+          title: "Obstacles of Being",
+          category: "Convergence Communication",
+          date: "Summer 2019",
+          type: "Performance Art",
+          description: "A multimedia performance art piece applying Social Norms Theory to explore societal barriers and personal identity. Through choreography and digital media, the project examines how social expectations shape individual behavior and self-expression.",
+          tags: ["Performance", "Digital Art", "Identity"],
+          links: [{ label: "View Performance", url: "#" }]
+        },
+        {
+          id: "7",
+          title: "Fall 2019 Curriculum Integration Forum",
+          category: "Bangla for Media",
+          date: "Fall 2019",
+          type: "Hard News Report",
+          description: "A journalistic hard news report covering the university's Curriculum Integration Forum. The piece demonstrates professional news writing skills in Bengali, following standard journalistic conventions for accuracy, objectivity, and clarity.",
+          tags: ["News Writing", "Bengali", "Journalism"],
+          links: [{ label: "Read Report", url: "#" }]
+        },
+        {
+          id: "8",
+          title: "Escape",
+          category: "Convergence Communication",
+          date: "Spring 2020",
+          type: "Video Art",
+          description: "An exploration of 'Communication Apprehension' through visual storytelling. Filmed on an island of the Padma river, this video art piece uses the open field to symbolize running away from reality and the internal struggle to overcome communicative hesitation.",
+          tags: ["Cinematography", "Storytelling", "Video Art"],
+          links: [{ label: "Watch Video", url: "https://youtu.be/df4TBdR7buY" }]
+        },
+        {
+          id: "9",
+          title: "Violence Against Women During COVID-19",
+          category: "Development Communication",
+          date: "Summer 2021",
+          type: "Campaign Plan",
+          description: "An awareness campaign through social mobilization to reduce increased violence against women during COVID-19's first wave. Case study on Rupganj Upazila, Narayanganj, using participatory approaches to empower communities and provide support resources.",
+          tags: ["C4D", "Gender", "COVID-19"],
+          links: [{ label: "View Campaign", url: "#" }]
+        },
+        {
+          id: "10",
+          title: "Renouncing Polythene Bags in Sanarpar",
+          category: "C4D Planning and Process",
+          date: "Spring 2021",
+          type: "Campaign Design",
+          description: "A Communication for Development campaign encouraging Sanarpar residents to abandon polythene bags. The strategic plan combines health messaging, community mobilization, and behavior change communication to promote environmental sustainability.",
+          tags: ["Environment", "Behavior Change", "C4D"],
+          links: [{ label: "View Strategy", url: "#" }]
+        },
+        {
+          id: "11",
+          title: "Social Media & Mental Health",
+          category: "Participatory Research",
+          date: "Summer 2021",
+          type: "Research Paper",
+          description: "A full-scale participatory research paper investigating the impact of excessive social media usage on the mental health of university students in Dhaka during the pandemic. The study identifies patterns of FOMO, anxiety, and depression through in-depth qualitative interviews.",
+          tags: ["Research", "Mental Health", "Qualitative"],
+          links: [{ label: "Case Study", url: "#" }]
+        },
+        {
+          id: "12",
+          title: "ACAPP (Anti-Child Abuse Program)",
+          category: "ICT for Development",
+          date: "Fall 2021",
+          type: "Application Design",
+          description: "Design and planning for a digital platform (ACAPP) intended to prevent child abuse and rescue victims. Features include a toll-free hotline, legal aid connections, and a media section for awareness-raising through digital posters and videos.",
+          tags: ["ICT4D", "App Design", "Social Impact"],
+          links: [{ label: "View Design", url: "#" }]
+        },
+        {
+          id: "13",
+          title: "Women's Attitude Toward Cesarean Delivery",
+          category: "Health Communication",
+          date: "Fall 2021",
+          type: "Research Paper",
+          description: "A qualitative research study exploring women's knowledge and attitudes toward cesarean section delivery in Dhaka, Bangladesh. The study examines decision-making factors, cultural influences, and health communication strategies to improve maternal healthcare awareness.",
+          tags: ["Health", "Qualitative", "Research"],
+          links: [{ label: "Read Study", url: "#" }]
+        },
         {
           id: "14",
           title: "The July Massacre Archive",
@@ -498,69 +643,27 @@
           description: "A comprehensive campaign strategy for sustainable water resource management in Bangladesh. It addresses the critical levels of river pollution in hubs like Hazaribagh and advocates for community-led initiatives and integrated water governance to protect biodiversity.",
           tags: ["Environment", "Campaign", "Sustainability"],
           links: [{ label: "Documentary Reel", url: "https://www.facebook.com/reel/1365902364679257" }]
-        },
-        {
-          id: "8",
-          title: "Escape",
-          category: "Convergence Communication",
-          date: "Spring 2020",
-          type: "Video Art",
-          description: "An exploration of 'Communication Apprehension' through visual storytelling. Filmed on an island of the Padma river, this video art piece uses the open field to symbolize running away from reality and the internal struggle to overcome communicative hesitation.",
-          tags: ["Cinematography", "Storytelling", "Video Art"],
-          links: [{ label: "Watch Video", url: "https://youtu.be/df4TBdR7buY" }]
-        },
-        {
-          id: "4",
-          title: "Digital Security Act Explainer",
-          category: "Communication and Technology",
-          date: "Fall 2020",
-          type: "Video Explainer",
-          description: "A detailed video explainer breaking down the laws of the Digital Security Act 2018. It analyzes how these legal frameworks impact social media expression and the broader landscape of communication convergence in the modern era.",
-          tags: ["Video", "Law", "Social Media"],
-          links: [{ label: "Watch Video", url: "https://www.facebook.com/share/v/16bd3FbaLR/" }]
-        },
-        {
-          id: "11",
-          title: "Social Media & Mental Health",
-          category: "Participatory Research",
-          date: "Summer 2021",
-          type: "Research Paper",
-          description: "A full-scale participatory research paper investigating the impact of excessive social media usage on the mental health of university students in Dhaka during the pandemic. The study identifies patterns of FOMO, anxiety, and depression through in-depth qualitative interviews.",
-          tags: ["Research", "Mental Health", "Qualitative"],
-          links: [{ label: "Case Study", url: "#" }]
-        },
-        {
-          id: "12",
-          title: "ACAPP (Anti-Child Abuse Program)",
-          category: "ICT for Development",
-          date: "Fall 2021",
-          type: "Application Design",
-          description: "Design and planning for a digital platform (ACAPP) intended to prevent child abuse and rescue victims. Features include a toll-free hotline, legal aid connections, and a media section for awareness-raising through digital posters and videos.",
-          tags: ["ICT4D", "App Design", "Social Impact"],
-          links: [{ label: "View Design", url: "#" }]
-        },
-        {
-          id: "2",
-          title: "We Are Adapting",
-          category: "Mass Communication",
-          date: "Spring 2019",
-          type: "Mask Exhibition",
-          description: "Visual communication project based on 'Broken Windows Theory'. Using painted masks exhibited at Shilpakala Academy, this project demonstrated the impacts of global warming and industrial waste on the ozone layer through an abstract artistic medium.",
-          tags: ["Visual Art", "Exhibition", "Climate"],
-          links: [{ label: "Exhibition", url: "#" }]
         }
       ];
 
       // Image mapping for projects
       const projectImages = {
-        "14": "https://images.unsplash.com/photo-1547550124-792161ad63b2?q=80&w=1600&auto=format&fit=crop",
-        "15": "https://images.unsplash.com/photo-1585829365234-781fcddec338?q=80&w=1600&auto=format&fit=crop",
-        "16": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop",
-        "8": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
+        "1": "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?q=80&w=1600&auto=format&fit=crop",
+        "2": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=1600&auto=format&fit=crop",
+        "3": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1600&auto=format&fit=crop",
         "4": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop",
+        "5": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1600&auto=format&fit=crop",
+        "6": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1600&auto=format&fit=crop",
+        "7": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1600&auto=format&fit=crop",
+        "8": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
+        "9": "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1600&auto=format&fit=crop",
+        "10": "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1600&auto=format&fit=crop",
         "11": "https://images.unsplash.com/photo-1527137342181-19aab11a8ee1?q=80&w=1600&auto=format&fit=crop",
         "12": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1600&auto=format&fit=crop",
-        "2": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=1600&auto=format&fit=crop"
+        "13": "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=1600&auto=format&fit=crop",
+        "14": "https://images.unsplash.com/photo-1547550124-792161ad63b2?q=80&w=1600&auto=format&fit=crop",
+        "15": "https://images.unsplash.com/photo-1585829365234-781fcddec338?q=80&w=1600&auto=format&fit=crop",
+        "16": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop"
       };
 
       // Configuration constants
@@ -720,60 +823,54 @@
           const imageUrl = projectImages[project.id] || 'https://images.unsplash.com/photo-1495020689067-2e223f005ac2?q=80&w=1600&auto=format&fit=crop';
           
           const projectCard = document.createElement('div');
-          projectCard.className = 'project-card group relative min-h-[600px] sm:min-h-[650px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]';
+          projectCard.className = 'project-card group relative overflow-hidden rounded-2xl bg-[#080808] border border-white/5 hover:border-indigo-500/30 transition-all duration-500';
           
           projectCard.innerHTML = `
-            <div class="absolute inset-0 z-0 overflow-hidden">
-              <img src="${imageUrl}" class="w-full h-full object-cover opacity-25 lg:opacity-30 grayscale" alt="${project.title}" />
-              <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 lg:via-[#050505]/70 to-transparent"></div>
-            </div>
-
-            <div class="absolute top-6 lg:top-12 left-6 lg:left-12 z-10 pointer-events-none">
-              <span class="text-6xl sm:text-9xl lg:text-[12rem] font-black text-outline opacity-[0.05] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
-                ${formattedIndex}
-              </span>
-            </div>
-
-            <div class="mt-auto p-6 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
-              <div class="mb-4 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-20 lg:group-hover:w-24 transition-all duration-700 ease-in-out"></div>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img src="${imageUrl}" class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" alt="${project.title}" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent"></div>
               
-              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mb-3 lg:mb-8">
-                <span class="px-2.5 sm:px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] lg:text-[10px] font-black uppercase tracking-wide sm:tracking-widest">
+              <div class="absolute top-4 right-4 z-10">
+                <span class="text-4xl font-black text-white/10 group-hover:text-indigo-500/30 transition-colors duration-500">
+                  ${formattedIndex}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] font-black uppercase tracking-widest">
                   ${project.category}
                 </span>
-                <span class="text-white/20 text-[10px] font-bold hidden sm:inline">•</span>
-                <span class="text-white/40 text-[9px] lg:text-[10px] font-bold uppercase tracking-wide sm:tracking-widest hidden sm:inline">${project.type}</span>
               </div>
 
-              <h3 class="text-2xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-4 sm:mb-6 lg:mb-10 leading-[1.2] sm:leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 tracking-tighter">
+              <h3 class="text-xl lg:text-2xl font-serif font-bold italic text-white group-hover:text-indigo-300 transition-colors duration-300 leading-tight line-clamp-2">
                 ${project.title}
               </h3>
 
-              <p class="text-slate-300 text-sm sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 lg:mb-12 opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-6 group-hover:translate-y-0 transition-all duration-[800ms] delay-100 font-light max-w-3xl">
+              <p class="text-slate-400 text-sm leading-relaxed line-clamp-3 group-hover:text-slate-300 transition-colors duration-300">
                 ${project.description}
               </p>
 
-              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-10 mt-2 sm:mt-4 w-full">
-                <div class="flex gap-2 sm:gap-3 w-full sm:w-auto">
-                  ${project.links ? project.links.map(link => `
-                    <a 
-                      href="${link.url === '#' ? 'javascript:void(0)' : link.url}" 
-                      ${link.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
-                      class="flex-1 sm:flex-none text-center px-4 sm:px-6 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
-                    >
-                      ${link.label}
-                      <svg class="w-3 h-3 lg:w-4 lg:h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                    </a>
-                  `).join('') : ''}
-                </div>
-                
-                <div class="flex gap-2 lg:gap-3 items-center flex-wrap">
-                  ${project.tags.slice(0, 3).map(tag => `
-                    <span class="text-[8px] lg:text-[9px] text-white/50 font-black px-2.5 sm:px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-wide sm:tracking-widest">
-                      ${tag}
-                    </span>
-                  `).join('')}
-                </div>
+              <div class="flex gap-2 flex-wrap pt-2">
+                ${project.tags.slice(0, 2).map(tag => `
+                  <span class="text-[9px] text-white/40 font-bold px-3 py-1 bg-white/5 rounded-full border border-white/5 uppercase tracking-wider">
+                    ${tag}
+                  </span>
+                `).join('')}
+              </div>
+
+              <div class="pt-4 flex gap-2">
+                ${project.links ? project.links.map(link => `
+                  <a 
+                    href="${link.url === '#' ? 'javascript:void(0)' : link.url}" 
+                    ${link.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+                    class="flex-1 text-center px-4 py-2.5 bg-white text-black text-[9px] font-black uppercase tracking-wider rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-lg flex items-center justify-center gap-2 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
+                  >
+                    ${link.label.length > 15 ? 'View' : link.label}
+                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </a>
+                `).join('') : ''}
               </div>
             </div>
           `;
