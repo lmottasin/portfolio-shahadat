@@ -861,16 +861,24 @@
               </div>
 
               <div class="pt-4 flex gap-2">
-                ${project.links ? project.links.map(link => `
+                <a 
+                  href="project-details.html?id=${project.id}" 
+                  class="flex-1 text-center px-4 py-2.5 bg-indigo-600 text-white text-[9px] font-black uppercase tracking-wider rounded-full hover:bg-white hover:text-black transition-all shadow-lg flex items-center justify-center gap-2"
+                >
+                  Details
+                  <svg class="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </a>
+                ${project.links && project.links.length > 0 && project.links[0].url !== '#' ? `
                   <a 
-                    href="${link.url === '#' ? 'javascript:void(0)' : link.url}" 
-                    ${link.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
-                    class="flex-1 text-center px-4 py-2.5 bg-white text-black text-[9px] font-black uppercase tracking-wider rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-lg flex items-center justify-center gap-2 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
+                    href="${project.links[0].url}" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="flex-1 text-center px-4 py-2.5 bg-white text-black text-[9px] font-black uppercase tracking-wider rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-lg flex items-center justify-center gap-2"
                   >
-                    ${link.label.length > 15 ? 'View' : link.label}
-                    <svg class="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    ${project.links[0].label.length > 15 ? 'View' : project.links[0].label}
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                   </a>
-                `).join('') : ''}
+                ` : ''}
               </div>
             </div>
           `;
