@@ -206,31 +206,31 @@
     
     <!-- Header -->
     <header class="fixed top-4 lg:top-8 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-[90%] max-w-4xl">
-      <nav class="glass flex items-center justify-between px-4 lg:px-8 h-14 lg:h-16 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+      <nav class="glass flex items-center justify-between px-3 lg:px-8 h-16 lg:h-16 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
         <div class="flex-shrink-0">
-          <span class="text-base lg:text-lg font-serif font-black tracking-tighter text-white">
+          <span class="text-sm lg:text-lg font-serif font-black tracking-tighter text-white">
             S.<span class="text-indigo-500 italic">SAYAL</span>
           </span>
         </div>
         
-        <div class="flex items-center space-x-1 lg:space-x-2">
-          <a href="#home" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-white">
+        <div class="flex items-center space-x-1.5 lg:space-x-2">
+          <a href="#home" class="nav-link px-2.5 lg:px-5 py-2 lg:py-2 text-[10px] lg:text-[10px] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] transition-all rounded-full relative group text-white">
             <span class="relative z-10">Home</span>
             <div class="nav-indicator opacity-0"></div>
           </a>
-          <a href="#about" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
+          <a href="#about" class="nav-link px-2.5 lg:px-5 py-2 lg:py-2 text-[10px] lg:text-[10px] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
             <span class="relative z-10">About</span>
             <div class="nav-indicator opacity-0"></div>
           </a>
-          <a href="#projects" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
+          <a href="#projects" class="nav-link px-2.5 lg:px-5 py-2 lg:py-2 text-[10px] lg:text-[10px] font-bold uppercase tracking-[0.1em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
             <span class="relative z-10">Works</span>
             <div class="nav-indicator opacity-0"></div>
           </a>
         </div>
 
         <div class="flex items-center">
-          <a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="px-4 lg:px-6 py-1.5 lg:py-2 bg-indigo-600 text-white text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition-all shadow-lg shadow-indigo-600/20">
-            Connect
+          <a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="px-3 lg:px-6 py-2 lg:py-2 bg-indigo-600 text-white text-[10px] lg:text-[10px] font-black uppercase tracking-wide lg:tracking-widest rounded-full hover:bg-white hover:text-black transition-all shadow-lg shadow-indigo-600/20">
+            Contact
           </a>
         </div>
       </nav>
@@ -389,7 +389,7 @@
           </div>
           
           <!-- Filter -->
-          <div class="flex flex-wrap items-center gap-8 mb-24 border-b border-white/5 pb-8 overflow-x-auto no-scrollbar" id="filterContainer">
+          <div class="flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 mb-16 lg:mb-24 border-b border-white/5 pb-6 lg:pb-8 overflow-x-auto no-scrollbar" id="filterContainer">
             <!-- Filters will be inserted here by JavaScript -->
           </div>
           
@@ -428,7 +428,9 @@
             <ul class="space-y-4 text-sm text-slate-500">
               <li><a href="#" class="hover:text-indigo-400 transition-colors">LinkedIn</a></li>
               <li><a href="#" class="hover:text-indigo-400 transition-colors">Facebook</a></li>
-              <li><a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="hover:text-indigo-400 transition-colors">Email Me</a></li>
+              <li><a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="hover:text-indigo-400 transition-colors">shahadat.sayal.msj@ulab.edu.bd</a></li>
+              <li><a href="mailto:shahadatsayal5094@gmail.com" class="hover:text-indigo-400 transition-colors">shahadatsayal5094@gmail.com</a></li>
+              <li><a href="tel:+8801626829441" class="hover:text-indigo-400 transition-colors">01626829441</a></li>
             </ul>
           </div>
         </div>
@@ -655,7 +657,7 @@
         
         categories.forEach(cat => {
           const button = document.createElement('button');
-          button.className = 'whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.4em] transition-all relative py-2';
+          button.className = 'whitespace-nowrap text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] lg:tracking-[0.4em] transition-all relative py-2 px-1';
           button.textContent = cat;
           
           if (cat === 'All') {
@@ -718,7 +720,7 @@
           const imageUrl = projectImages[project.id] || 'https://images.unsplash.com/photo-1495020689067-2e223f005ac2?q=80&w=1600&auto=format&fit=crop';
           
           const projectCard = document.createElement('div');
-          projectCard.className = 'project-card group relative min-h-[550px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]';
+          projectCard.className = 'project-card group relative min-h-[600px] sm:min-h-[650px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]';
           
           projectCard.innerHTML = `
             <div class="absolute inset-0 z-0 overflow-hidden">
@@ -727,37 +729,37 @@
             </div>
 
             <div class="absolute top-6 lg:top-12 left-6 lg:left-12 z-10 pointer-events-none">
-              <span class="text-7xl sm:text-9xl lg:text-[12rem] font-black text-outline opacity-[0.05] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
+              <span class="text-6xl sm:text-9xl lg:text-[12rem] font-black text-outline opacity-[0.05] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
                 ${formattedIndex}
               </span>
             </div>
 
-            <div class="mt-auto p-8 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
-              <div class="mb-6 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-20 lg:group-hover:w-24 transition-all duration-700 ease-in-out"></div>
+            <div class="mt-auto p-6 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
+              <div class="mb-4 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-20 lg:group-hover:w-24 transition-all duration-700 ease-in-out"></div>
               
-              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 lg:mb-8">
-                <span class="px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mb-3 lg:mb-8">
+                <span class="px-2.5 sm:px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] lg:text-[10px] font-black uppercase tracking-wide sm:tracking-widest">
                   ${project.category}
                 </span>
                 <span class="text-white/20 text-[10px] font-bold hidden sm:inline">•</span>
-                <span class="text-white/40 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest hidden sm:inline">${project.type}</span>
+                <span class="text-white/40 text-[9px] lg:text-[10px] font-bold uppercase tracking-wide sm:tracking-widest hidden sm:inline">${project.type}</span>
               </div>
 
-              <h3 class="text-3xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-6 lg:mb-10 leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 tracking-tighter">
+              <h3 class="text-2xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-4 sm:mb-6 lg:mb-10 leading-[1.2] sm:leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 tracking-tighter">
                 ${project.title}
               </h3>
 
-              <p class="text-slate-300 text-sm sm:text-lg lg:text-xl leading-relaxed mb-8 lg:mb-12 opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-6 group-hover:translate-y-0 transition-all duration-[800ms] delay-100 font-light max-w-3xl">
+              <p class="text-slate-300 text-sm sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 lg:mb-12 opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-6 group-hover:translate-y-0 transition-all duration-[800ms] delay-100 font-light max-w-3xl">
                 ${project.description}
               </p>
 
-              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10 mt-4 w-full">
-                <div class="flex gap-3 w-full sm:w-auto">
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 lg:gap-10 mt-2 sm:mt-4 w-full">
+                <div class="flex gap-2 sm:gap-3 w-full sm:w-auto">
                   ${project.links ? project.links.map(link => `
                     <a 
                       href="${link.url === '#' ? 'javascript:void(0)' : link.url}" 
                       ${link.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
-                      class="flex-1 sm:flex-none text-center px-6 lg:px-10 py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
+                      class="flex-1 sm:flex-none text-center px-4 sm:px-6 lg:px-10 py-2.5 sm:py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
                     >
                       ${link.label}
                       <svg class="w-3 h-3 lg:w-4 lg:h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -767,7 +769,7 @@
                 
                 <div class="flex gap-2 lg:gap-3 items-center flex-wrap">
                   ${project.tags.slice(0, 3).map(tag => `
-                    <span class="text-[8px] lg:text-[9px] text-white/50 font-black px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-widest">
+                    <span class="text-[8px] lg:text-[9px] text-white/50 font-black px-2.5 sm:px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-wide sm:tracking-widest">
                       ${tag}
                     </span>
                   `).join('')}
