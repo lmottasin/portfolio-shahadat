@@ -428,7 +428,7 @@
             <ul class="space-y-4 text-sm text-slate-500">
               <li><a href="#" class="hover:text-indigo-400 transition-colors">LinkedIn</a></li>
               <li><a href="#" class="hover:text-indigo-400 transition-colors">Facebook</a></li>
-              <li><a href="mailto:contact@sayal.com" class="hover:text-indigo-400 transition-colors">Email Me</a></li>
+              <li><a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="hover:text-indigo-400 transition-colors">Email Me</a></li>
             </ul>
           </div>
         </div>
@@ -561,6 +561,15 @@
         "2": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=1600&auto=format&fit=crop"
       };
 
+      // Configuration constants
+      const CONFIG = {
+        SCROLL_OFFSET: 300,
+        PARALLAX_MAX_SCROLL: 500,
+        PARALLAX_OPACITY_FADE: 300,
+        OBSERVER_MARGIN: '-100px',
+        OBSERVER_THRESHOLD: 0.1
+      };
+
       // State
       let currentFilter = 'All';
       let activeSection = 'home';
@@ -593,7 +602,7 @@
         
         window.addEventListener('scroll', () => {
           const sections = ['home', 'about', 'projects'];
-          const scrollPosition = window.scrollY + 300;
+          const scrollPosition = window.scrollY + CONFIG.SCROLL_OFFSET;
           
           for (const sectionId of sections) {
             const element = document.getElementById(sectionId);
@@ -778,8 +787,8 @@
       function initIntersectionObserver() {
         const observerOptions = {
           root: null,
-          rootMargin: '-100px',
-          threshold: 0.1
+          rootMargin: CONFIG.OBSERVER_MARGIN,
+          threshold: CONFIG.OBSERVER_THRESHOLD
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -800,8 +809,8 @@
       function observeProjectCards() {
         const observerOptions = {
           root: null,
-          rootMargin: '-100px',
-          threshold: 0.1
+          rootMargin: CONFIG.OBSERVER_MARGIN,
+          threshold: CONFIG.OBSERVER_THRESHOLD
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -825,10 +834,10 @@
           const currentScrollY = window.scrollY;
           
           // Hero background parallax
-          if (currentScrollY < 500) {
+          if (currentScrollY < CONFIG.PARALLAX_MAX_SCROLL) {
             const heroBackground = document.getElementById('heroBackground');
             if (heroBackground) {
-              const opacity = 1 - (currentScrollY / 300);
+              const opacity = 1 - (currentScrollY / CONFIG.PARALLAX_OPACITY_FADE);
               heroBackground.style.opacity = Math.max(0, opacity);
             }
             
