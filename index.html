@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -65,21 +64,796 @@
         .animate-subtle-zoom {
           animation: subtle-zoom 20s infinite alternate ease-in-out;
         }
+        
+        /* Fade in animations */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(1.1);
+            filter: grayscale(100%);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+            filter: grayscale(0%);
+          }
+        }
+        
+        .fade-in-up {
+          animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .fade-in-left {
+          animation: fadeInLeft 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .fade-in {
+          animation: fadeIn 1s forwards;
+        }
+        
+        .scale-in {
+          animation: scaleIn 1.5s ease-out forwards;
+        }
+        
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+        .animate-delay-5 { animation-delay: 0.5s; }
+        .animate-delay-6 { animation-delay: 0.6s; }
+        
+        /* Scroll progress bar */
+        .scroll-progress {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: #818cf8;
+          transform-origin: left;
+          z-index: 110;
+          transition: transform 0.1s ease-out;
+        }
+        
+        /* Active nav indicator */
+        .nav-indicator {
+          position: absolute;
+          inset: 0;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 9999px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+        }
+        
+        /* Filter indicator */
+        .filter-indicator {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: #818cf8;
+          transition: all 0.3s ease;
+        }
+        
+        /* Project card animations */
+        .project-card {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .project-card.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        .project-card img {
+          transition: all 1.5s ease;
+        }
+        
+        .project-card:hover img {
+          transform: scale(1.05);
+          opacity: 0.6;
+          filter: grayscale(0);
+        }
+        
+        /* Objective items animation */
+        .objective-item {
+          opacity: 0;
+          transform: translateX(20px);
+          transition: all 0.5s ease;
+        }
+        
+        .objective-item.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/": "https://esm.sh/react@18.3.1/",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
-    "framer-motion": "https://esm.sh/framer-motion@11.11.11?deps=react@18.3.1"
-  }
-}
-</script>
 </head>
 <body class="bg-[#050505]">
     <div class="noise"></div>
-    <div id="root"></div>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Header -->
+    <header class="fixed top-4 lg:top-8 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-[90%] max-w-4xl">
+      <nav class="glass flex items-center justify-between px-4 lg:px-8 h-14 lg:h-16 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+        <div class="flex-shrink-0">
+          <span class="text-base lg:text-lg font-serif font-black tracking-tighter text-white">
+            S.<span class="text-indigo-500 italic">SAYAL</span>
+          </span>
+        </div>
+        
+        <div class="flex items-center space-x-1 lg:space-x-2">
+          <a href="#home" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-white">
+            <span class="relative z-10">Home</span>
+            <div class="nav-indicator opacity-0"></div>
+          </a>
+          <a href="#about" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
+            <span class="relative z-10">About</span>
+            <div class="nav-indicator opacity-0"></div>
+          </a>
+          <a href="#projects" class="nav-link px-3 lg:px-5 py-1.5 lg:py-2 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.15em] lg:tracking-[0.2em] transition-all rounded-full relative group text-slate-400 hover:text-white">
+            <span class="relative z-10">Works</span>
+            <div class="nav-indicator opacity-0"></div>
+          </a>
+        </div>
+
+        <div class="flex items-center">
+          <a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="px-4 lg:px-6 py-1.5 lg:py-2 bg-indigo-600 text-white text-[9px] lg:text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-black transition-all shadow-lg shadow-indigo-600/20">
+            Connect
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="home" class="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden pt-32 pb-16 lg:pt-24 lg:pb-12">
+        <!-- Background Decorative Text -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full select-none pointer-events-none z-0" id="heroBackground">
+          <h2 class="text-[25vw] font-black text-outline text-center uppercase leading-none opacity-5 lg:opacity-10">
+            JOURNALISM
+          </h2>
+        </div>
+
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10 items-center">
+          <div class="lg:col-span-7 flex flex-col items-start order-2 lg:order-1">
+            <div class="fade-in-left">
+              <p class="text-indigo-400 font-black tracking-[0.3em] lg:tracking-[0.6em] text-[10px] lg:text-xs mb-6 lg:mb-8 flex items-center gap-3 lg:gap-4">
+                <span class="w-8 lg:w-12 h-px bg-indigo-500/50"></span>
+                The Visual Storyteller
+              </p>
+              <h1 class="text-5xl sm:text-7xl lg:text-[8rem] xl:text-[9.5rem] font-serif font-black italic text-white leading-[0.9] lg:leading-[0.8] mb-8 lg:mb-10 tracking-tighter">
+                Shahadat <br />
+                <span class="text-indigo-500 not-italic">Sayal.</span>
+              </h1>
+              <div class="max-w-xl">
+                <p class="text-base sm:text-lg lg:text-2xl text-slate-300 font-light leading-relaxed mb-10 lg:mb-12">
+                  Merging academic research with immersive digital media. Dedicated to Communication for Development and uncovering the human impact of societal change.
+                </p>
+                <div class="flex flex-wrap gap-4 lg:gap-6">
+                  <a href="#projects" class="w-full sm:w-auto text-center px-8 lg:px-10 py-4 lg:py-5 bg-white text-black font-black text-[10px] lg:text-xs uppercase tracking-widest rounded-full hover:bg-indigo-500 hover:text-white transition-all shadow-2xl hover:scale-105 active:scale-95">
+                    Explore Archive
+                  </a>
+                  <a href="#about" class="w-full sm:w-auto text-center px-8 lg:px-10 py-4 lg:py-5 border border-white/20 text-white font-black text-[10px] lg:text-xs uppercase tracking-widest rounded-full hover:bg-white/10 transition-all">
+                    My Story
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 relative flex justify-center order-1 lg:order-2">
+            <div class="relative w-full max-w-[260px] sm:max-w-md aspect-[4/5] group" id="heroImage">
+              <div class="absolute inset-4 bg-indigo-600/20 blur-3xl rounded-3xl -z-10 group-hover:bg-indigo-500/30 transition-all duration-1000"></div>
+              
+              <div class="relative h-full w-full overflow-hidden rounded-3xl bg-[#111] border border-white/10">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1200&auto=format&fit=crop" alt="Shahadat Sayal" class="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110 scale-in" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80"></div>
+              </div>
+
+              <div class="absolute -top-4 -right-4 lg:-top-10 lg:-right-8 glass p-4 lg:p-8 rounded-2xl lg:rounded-3xl border border-white/10 shadow-2xl z-20">
+                <div class="text-right">
+                  <p class="text-white font-serif italic text-base lg:text-2xl mb-0 lg:mb-1 leading-tight">Journalist</p>
+                  <p class="text-indigo-400 text-[8px] lg:text-[10px] font-black uppercase tracking-widest leading-none">Research Analyst</p>
+                  <div class="mt-2 lg:mt-4 flex justify-end gap-1">
+                    <div class="w-1 lg:w-1.5 h-0.5 lg:h-1 bg-white/40 rounded-full"></div>
+                    <div class="w-1 lg:w-1.5 h-0.5 lg:h-1 bg-white/40 rounded-full"></div>
+                    <div class="w-1 lg:w-1.5 h-0.5 lg:h-1 bg-white/40 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-4 lg:bottom-12 flex-col items-center gap-3 lg:gap-4 cursor-pointer hidden sm:flex fade-in" style="animation-delay: 2.5s;" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+          <span class="text-[8px] lg:text-[10px] font-black text-slate-500 uppercase tracking-[0.5em] rotate-180" style="writing-mode: vertical-rl;">Scroll</span>
+          <div class="w-px h-10 lg:h-16 bg-gradient-to-b from-indigo-500 to-transparent"></div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-24 lg:py-48 relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+            <!-- Left Column: Identity & Vision -->
+            <div class="lg:col-span-5 flex flex-col justify-start">
+              <div class="fade-in-up">
+                <div class="flex items-center gap-4 mb-6 lg:mb-8">
+                  <div class="h-[2px] w-6 lg:w-8 bg-indigo-500"></div>
+                  <h2 class="text-indigo-400 font-black uppercase tracking-[0.3em] lg:tracking-[0.4em] text-[10px] lg:text-xs">
+                    The Identity
+                  </h2>
+                </div>
+                
+                <h3 class="text-5xl sm:text-6xl lg:text-8xl font-serif font-black italic text-white leading-[0.85] tracking-tighter mb-8 lg:mb-10">
+                  Media as a <br /> 
+                  <span class="text-indigo-500 not-italic">Catalyst.</span>
+                </h3>
+                
+                <div class="space-y-6 max-w-lg">
+                  <p class="text-xl lg:text-2xl text-slate-100 font-medium leading-relaxed">
+                    Shahadat Sayal is a journalistic visionary blending academic precision with creative activism.
+                  </p>
+                  <p class="text-base lg:text-lg text-slate-400 leading-relaxed font-light">
+                    His work bridges the gap between complex social theories and human impact. By focusing on Communication for Development, he utilizes multimedia production to amplify marginalized voices and challenge systemic dogmatism.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="mt-12 lg:mt-16 p-8 lg:p-10 glass rounded-2xl lg:rounded-[2rem] border border-white/10 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-6 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+                   <svg class="w-16 h-16 lg:w-24 lg:h-24 text-indigo-500" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9125 16 16.0171 16H19.0171V14.5C19.0171 11.4624 16.5547 9 13.5171 9H12.0171V7H13.5171C17.6592 7 21.0171 10.3579 21.0171 14.5V21H14.017Z" /></svg>
+                </div>
+                <p class="text-white text-lg lg:text-xl font-serif italic mb-3 lg:mb-4 relative z-10 leading-relaxed">"The architect of social change through evidence."</p>
+                <p class="text-slate-500 text-[10px] lg:text-xs font-bold uppercase tracking-widest relative z-10">Focus: Investigative Research</p>
+              </div>
+            </div>
+
+            <!-- Right Column: Academic & Objectives -->
+            <div class="lg:col-span-7 flex flex-col gap-12 lg:gap-16">
+              <section>
+                <div class="p-8 lg:p-12 border border-white/10 rounded-[2rem] lg:rounded-[3rem] bg-gradient-to-br from-white/[0.03] to-transparent shadow-2xl relative overflow-hidden group">
+                  <div class="absolute -top-24 -right-24 w-48 lg:w-64 h-48 lg:h-64 bg-indigo-500/10 rounded-full blur-[60px] lg:blur-[80px] group-hover:bg-indigo-500/20 transition-all duration-1000"></div>
+                  
+                  <span class="text-[9px] lg:text-[10px] text-slate-500 uppercase tracking-[0.2em] lg:tracking-[0.3em] block mb-4">Academic Background</span>
+                  <p class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white mb-2 tracking-tight">Media Studies and Journalism</p>
+                  <p class="text-indigo-400 font-black uppercase tracking-[0.15em] lg:tracking-[0.2em] text-[10px] lg:text-xs mb-8 lg:mb-10">ULAB • University of Liberal Arts Bangladesh</p>
+                  
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10 pt-8 lg:pt-10 border-t border-white/10">
+                    <div class="space-y-1 lg:space-y-2">
+                      <span class="text-[9px] lg:text-[10px] text-slate-500 uppercase tracking-widest block">Major Concentration</span>
+                      <span class="text-white text-base lg:text-lg font-semibold tracking-tight">Communication for Development</span>
+                    </div>
+                    <div class="space-y-1 lg:space-y-2">
+                      <span class="text-[9px] lg:text-[10px] text-slate-500 uppercase tracking-widest block">Minor Discipline</span>
+                      <span class="text-white text-base lg:text-lg font-semibold tracking-tight">English</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h4 class="text-white font-black text-[10px] lg:text-xs uppercase tracking-[0.3em] lg:tracking-[0.4em] mb-8 lg:mb-12 flex items-center gap-4 lg:gap-6">
+                  Strategic Objectives
+                  <div class="flex-grow h-[1px] bg-white/10"></div>
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 lg:gap-y-8" id="objectivesList">
+                  <!-- Objectives will be inserted here by JavaScript -->
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 lg:py-48 bg-[#050505] relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+          <div class="mb-16 lg:mb-24 flex flex-col items-center text-center">
+            <span class="text-indigo-400 font-bold uppercase tracking-[0.3em] lg:tracking-[0.5em] text-[10px] lg:text-xs mb-4">Evidence & Impact</span>
+            <h2 class="text-5xl md:text-8xl font-serif font-black italic text-white leading-none">
+              Curated Works.
+            </h2>
+          </div>
+          
+          <!-- Filter -->
+          <div class="flex flex-wrap items-center gap-8 mb-24 border-b border-white/5 pb-8 overflow-x-auto no-scrollbar" id="filterContainer">
+            <!-- Filters will be inserted here by JavaScript -->
+          </div>
+          
+          <!-- Projects Grid -->
+          <div class="flex flex-col gap-px bg-white/5 border border-white/5 overflow-hidden rounded-3xl" id="projectsContainer">
+            <!-- Projects will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a0c10] pt-24 pb-12 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div class="lg:col-span-2">
+            <span class="text-2xl font-serif font-bold text-white tracking-tight">
+              Shahadat <span class="text-indigo-400">Sayal</span>
+            </span>
+            <p class="mt-6 text-slate-400 max-w-sm leading-relaxed">
+              Specializing in Communication for Development and modern journalistic storytelling. Based in Bangladesh.
+            </p>
+          </div>
+          
+          <div>
+            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Navigation</h4>
+            <ul class="space-y-4 text-sm text-slate-500">
+              <li><a href="#home" class="hover:text-indigo-400 transition-colors">Overview</a></li>
+              <li><a href="#about" class="hover:text-indigo-400 transition-colors">Profile</a></li>
+              <li><a href="#projects" class="hover:text-indigo-400 transition-colors">Works</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-6">Connect</h4>
+            <ul class="space-y-4 text-sm text-slate-500">
+              <li><a href="#" class="hover:text-indigo-400 transition-colors">LinkedIn</a></li>
+              <li><a href="#" class="hover:text-indigo-400 transition-colors">Facebook</a></li>
+              <li><a href="mailto:shahadat.sayal.msj@ulab.edu.bd" class="hover:text-indigo-400 transition-colors">Email Me</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p class="text-slate-600 text-xs font-medium uppercase tracking-[0.2em]">
+            © 2025 Shahadat Sayal — Portfolio v2.0
+          </p>
+          <div class="flex gap-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">Available for Collaborations</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Student Info Data
+      const STUDENT_INFO = {
+        name: "Shahadat Sayal",
+        id: "181 012 057",
+        department: "Media Studies and Journalism",
+        major: "Communication for Development",
+        minor: "English",
+        objectives: [
+          "To become a good thinker and a good decision-maker.",
+          "To explore the vast arena of knowledge in the field of communication, media studies, and journalism.",
+          "To assimilate the theories into practices in real life.",
+          "To gain problem-solving skills and enhance capability.",
+          "To improve my communication ability.",
+          "To practice academic writing and creative content writing.",
+          "To build capacity for contribution to knowledge creation.",
+          "To build capacity for identifying research problems and doing research."
+        ]
+      };
+
+      // Projects Data
+      const PROJECTS = [
+        {
+          id: "14",
+          title: "The July Massacre Archive",
+          category: "Created Private Media",
+          date: "Summer 2025",
+          type: "Semi Documentary",
+          description: "A historical documentary project documenting the July Uprising in Bangladesh. This initiative focuses on creating a reliable digital repository of testimonies, photos, and stories to record the sacrifices of student activists and preserve the spirit of the uprising against historical erasure.",
+          tags: ["Documentary", "Journalism", "Archive"],
+          links: [{ label: "Production Link", url: "https://drive.google.com/file/d/1_Aka6AAYSEqCfw31zA82l6CHyy9dAZGn/view" }]
+        },
+        {
+          id: "15",
+          title: "Gujob Limited (Disinformation Satire)",
+          category: "Entertainment Education",
+          date: "Spring 2025",
+          type: "Video Production",
+          description: "A satirical edu-tainment short film exploring the dangers of disinformation and unethical journalism. The narrative follows an idealistic journalist using fact-checking tools to expose a fabricated scandal, highlighting the urgent need for media literacy in the digital age.",
+          tags: ["Film", "Satire", "Fact-Checking"],
+          links: [{ label: "Watch Short Film", url: "https://www.facebook.com/share/v/1D595E4a6r/" }]
+        },
+        {
+          id: "16",
+          title: "Every Drop Counts",
+          category: "Environmental Communication",
+          date: "Spring 2025",
+          type: "Campaign Strategy",
+          description: "A comprehensive campaign strategy for sustainable water resource management in Bangladesh. It addresses the critical levels of river pollution in hubs like Hazaribagh and advocates for community-led initiatives and integrated water governance to protect biodiversity.",
+          tags: ["Environment", "Campaign", "Sustainability"],
+          links: [{ label: "Documentary Reel", url: "https://www.facebook.com/reel/1365902364679257" }]
+        },
+        {
+          id: "8",
+          title: "Escape",
+          category: "Convergence Communication",
+          date: "Spring 2020",
+          type: "Video Art",
+          description: "An exploration of 'Communication Apprehension' through visual storytelling. Filmed on an island of the Padma river, this video art piece uses the open field to symbolize running away from reality and the internal struggle to overcome communicative hesitation.",
+          tags: ["Cinematography", "Storytelling", "Video Art"],
+          links: [{ label: "Watch Video", url: "https://youtu.be/df4TBdR7buY" }]
+        },
+        {
+          id: "4",
+          title: "Digital Security Act Explainer",
+          category: "Communication and Technology",
+          date: "Fall 2020",
+          type: "Video Explainer",
+          description: "A detailed video explainer breaking down the laws of the Digital Security Act 2018. It analyzes how these legal frameworks impact social media expression and the broader landscape of communication convergence in the modern era.",
+          tags: ["Video", "Law", "Social Media"],
+          links: [{ label: "Watch Video", url: "https://www.facebook.com/share/v/16bd3FbaLR/" }]
+        },
+        {
+          id: "11",
+          title: "Social Media & Mental Health",
+          category: "Participatory Research",
+          date: "Summer 2021",
+          type: "Research Paper",
+          description: "A full-scale participatory research paper investigating the impact of excessive social media usage on the mental health of university students in Dhaka during the pandemic. The study identifies patterns of FOMO, anxiety, and depression through in-depth qualitative interviews.",
+          tags: ["Research", "Mental Health", "Qualitative"],
+          links: [{ label: "Case Study", url: "#" }]
+        },
+        {
+          id: "12",
+          title: "ACAPP (Anti-Child Abuse Program)",
+          category: "ICT for Development",
+          date: "Fall 2021",
+          type: "Application Design",
+          description: "Design and planning for a digital platform (ACAPP) intended to prevent child abuse and rescue victims. Features include a toll-free hotline, legal aid connections, and a media section for awareness-raising through digital posters and videos.",
+          tags: ["ICT4D", "App Design", "Social Impact"],
+          links: [{ label: "View Design", url: "#" }]
+        },
+        {
+          id: "2",
+          title: "We Are Adapting",
+          category: "Mass Communication",
+          date: "Spring 2019",
+          type: "Mask Exhibition",
+          description: "Visual communication project based on 'Broken Windows Theory'. Using painted masks exhibited at Shilpakala Academy, this project demonstrated the impacts of global warming and industrial waste on the ozone layer through an abstract artistic medium.",
+          tags: ["Visual Art", "Exhibition", "Climate"],
+          links: [{ label: "Exhibition", url: "#" }]
+        }
+      ];
+
+      // Image mapping for projects
+      const projectImages = {
+        "14": "https://images.unsplash.com/photo-1547550124-792161ad63b2?q=80&w=1600&auto=format&fit=crop",
+        "15": "https://images.unsplash.com/photo-1585829365234-781fcddec338?q=80&w=1600&auto=format&fit=crop",
+        "16": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1600&auto=format&fit=crop",
+        "8": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
+        "4": "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1600&auto=format&fit=crop",
+        "11": "https://images.unsplash.com/photo-1527137342181-19aab11a8ee1?q=80&w=1600&auto=format&fit=crop",
+        "12": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=1600&auto=format&fit=crop",
+        "2": "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?q=80&w=1600&auto=format&fit=crop"
+      };
+
+      // Configuration constants
+      const CONFIG = {
+        SCROLL_OFFSET: 300,
+        PARALLAX_MAX_SCROLL: 500,
+        PARALLAX_OPACITY_FADE: 300,
+        OBSERVER_MARGIN: '-100px',
+        OBSERVER_THRESHOLD: 0.1
+      };
+
+      // State
+      let currentFilter = 'All';
+      let activeSection = 'home';
+
+      // Initialize app
+      document.addEventListener('DOMContentLoaded', function() {
+        initScrollProgress();
+        initNavigation();
+        initObjectives();
+        initFilters();
+        initProjects();
+        initIntersectionObserver();
+        initParallax();
+      });
+
+      // Scroll Progress Bar
+      function initScrollProgress() {
+        const progressBar = document.getElementById('scrollProgress');
+        
+        window.addEventListener('scroll', () => {
+          const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (window.scrollY / windowHeight);
+          progressBar.style.transform = `scaleX(${scrolled})`;
+        });
+      }
+
+      // Navigation Active State
+      function initNavigation() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+          const sections = ['home', 'about', 'projects'];
+          const scrollPosition = window.scrollY + CONFIG.SCROLL_OFFSET;
+          
+          for (const sectionId of sections) {
+            const element = document.getElementById(sectionId);
+            if (element && scrollPosition >= element.offsetTop && scrollPosition < element.offsetTop + element.offsetHeight) {
+              activeSection = sectionId;
+              
+              navLinks.forEach(link => {
+                const href = link.getAttribute('href').substring(1);
+                const indicator = link.querySelector('.nav-indicator');
+                
+                if (href === activeSection) {
+                  link.classList.add('text-white');
+                  link.classList.remove('text-slate-400');
+                  indicator.style.opacity = '1';
+                } else {
+                  link.classList.remove('text-white');
+                  link.classList.add('text-slate-400');
+                  indicator.style.opacity = '0';
+                }
+              });
+            }
+          }
+        });
+      }
+
+      // Initialize Objectives
+      function initObjectives() {
+        const objectivesList = document.getElementById('objectivesList');
+        const objectives = STUDENT_INFO.objectives.slice(0, 6);
+        
+        objectives.forEach((obj, i) => {
+          const div = document.createElement('div');
+          div.className = 'objective-item group flex items-start gap-4 lg:gap-6';
+          div.innerHTML = `
+            <span class="text-indigo-500 font-black text-xl lg:text-2xl opacity-30 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
+              0${i+1}
+            </span>
+            <p class="text-slate-300 text-sm lg:text-[15px] leading-relaxed group-hover:text-white transition-colors duration-300 pt-1">
+              ${obj}
+            </p>
+          `;
+          objectivesList.appendChild(div);
+        });
+      }
+
+      // Initialize Filters
+      function initFilters() {
+        const filterContainer = document.getElementById('filterContainer');
+        const categories = ['All', ...new Set(PROJECTS.map(p => p.category))];
+        
+        categories.forEach(cat => {
+          const button = document.createElement('button');
+          button.className = 'whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.4em] transition-all relative py-2';
+          button.textContent = cat;
+          
+          if (cat === 'All') {
+            button.classList.add('text-white');
+            const indicator = document.createElement('div');
+            indicator.className = 'filter-indicator';
+            button.appendChild(indicator);
+          } else {
+            button.classList.add('text-slate-500', 'hover:text-slate-300');
+          }
+          
+          button.addEventListener('click', () => {
+            currentFilter = cat;
+            updateFilters();
+            renderProjects();
+          });
+          
+          filterContainer.appendChild(button);
+        });
+      }
+
+      // Update Filters
+      function updateFilters() {
+        const buttons = document.querySelectorAll('#filterContainer button');
+        
+        buttons.forEach(button => {
+          const existingIndicator = button.querySelector('.filter-indicator');
+          if (existingIndicator) {
+            existingIndicator.remove();
+          }
+          
+          if (button.textContent === currentFilter) {
+            button.classList.add('text-white');
+            button.classList.remove('text-slate-500');
+            const indicator = document.createElement('div');
+            indicator.className = 'filter-indicator';
+            button.appendChild(indicator);
+          } else {
+            button.classList.remove('text-white');
+            button.classList.add('text-slate-500');
+          }
+        });
+      }
+
+      // Render Projects
+      function initProjects() {
+        renderProjects();
+      }
+
+      function renderProjects() {
+        const projectsContainer = document.getElementById('projectsContainer');
+        projectsContainer.innerHTML = '';
+        
+        const filteredProjects = currentFilter === 'All' 
+          ? PROJECTS 
+          : PROJECTS.filter(p => p.category === currentFilter);
+        
+        filteredProjects.forEach((project, index) => {
+          const formattedIndex = (index + 1).toString().padStart(2, '0');
+          const imageUrl = projectImages[project.id] || 'https://images.unsplash.com/photo-1495020689067-2e223f005ac2?q=80&w=1600&auto=format&fit=crop';
+          
+          const projectCard = document.createElement('div');
+          projectCard.className = 'project-card group relative min-h-[550px] lg:h-[750px] w-full overflow-hidden flex flex-col bg-[#080808]';
+          
+          projectCard.innerHTML = `
+            <div class="absolute inset-0 z-0 overflow-hidden">
+              <img src="${imageUrl}" class="w-full h-full object-cover opacity-25 lg:opacity-30 grayscale" alt="${project.title}" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 lg:via-[#050505]/70 to-transparent"></div>
+            </div>
+
+            <div class="absolute top-6 lg:top-12 left-6 lg:left-12 z-10 pointer-events-none">
+              <span class="text-7xl sm:text-9xl lg:text-[12rem] font-black text-outline opacity-[0.05] lg:opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
+                ${formattedIndex}
+              </span>
+            </div>
+
+            <div class="mt-auto p-8 sm:p-12 lg:p-24 relative z-20 flex flex-col items-start max-w-5xl">
+              <div class="mb-6 lg:mb-8 h-[2px] w-8 lg:w-12 bg-indigo-500 group-hover:w-20 lg:group-hover:w-24 transition-all duration-700 ease-in-out"></div>
+              
+              <div class="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 lg:mb-8">
+                <span class="px-3 lg:px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[9px] lg:text-[10px] font-black uppercase tracking-widest">
+                  ${project.category}
+                </span>
+                <span class="text-white/20 text-[10px] font-bold hidden sm:inline">•</span>
+                <span class="text-white/40 text-[9px] lg:text-[10px] font-bold uppercase tracking-widest hidden sm:inline">${project.type}</span>
+              </div>
+
+              <h3 class="text-3xl sm:text-5xl lg:text-8xl font-serif font-black italic text-white mb-6 lg:mb-10 leading-[1.1] lg:leading-[0.9] group-hover:text-indigo-200 transition-colors duration-500 tracking-tighter">
+                ${project.title}
+              </h3>
+
+              <p class="text-slate-300 text-sm sm:text-lg lg:text-xl leading-relaxed mb-8 lg:mb-12 opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-6 group-hover:translate-y-0 transition-all duration-[800ms] delay-100 font-light max-w-3xl">
+                ${project.description}
+              </p>
+
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 lg:gap-10 mt-4 w-full">
+                <div class="flex gap-3 w-full sm:w-auto">
+                  ${project.links ? project.links.map(link => `
+                    <a 
+                      href="${link.url === '#' ? 'javascript:void(0)' : link.url}" 
+                      ${link.url !== '#' ? 'target="_blank" rel="noopener noreferrer"' : ''}
+                      class="flex-1 sm:flex-none text-center px-6 lg:px-10 py-3 lg:py-4 bg-white text-black text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-600 hover:text-white transition-all shadow-2xl flex items-center justify-center gap-2 lg:gap-3 ${link.url === '#' ? 'cursor-not-allowed opacity-40 grayscale' : 'cursor-pointer'}"
+                    >
+                      ${link.label}
+                      <svg class="w-3 h-3 lg:w-4 lg:h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    </a>
+                  `).join('') : ''}
+                </div>
+                
+                <div class="flex gap-2 lg:gap-3 items-center flex-wrap">
+                  ${project.tags.slice(0, 3).map(tag => `
+                    <span class="text-[8px] lg:text-[9px] text-white/50 font-black px-3 lg:px-4 py-1 lg:py-1.5 bg-white/5 rounded-full border border-white/5 uppercase tracking-widest">
+                      ${tag}
+                    </span>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          `;
+          
+          projectsContainer.appendChild(projectCard);
+        });
+        
+        // Re-initialize intersection observer for new cards
+        observeProjectCards();
+      }
+
+      // Intersection Observer for animations
+      function initIntersectionObserver() {
+        const observerOptions = {
+          root: null,
+          rootMargin: CONFIG.OBSERVER_MARGIN,
+          threshold: CONFIG.OBSERVER_THRESHOLD
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, observerOptions);
+
+        // Observe objective items
+        document.querySelectorAll('.objective-item').forEach((item, index) => {
+          item.style.transitionDelay = `${index * 0.1}s`;
+          observer.observe(item);
+        });
+      }
+
+      function observeProjectCards() {
+        const observerOptions = {
+          root: null,
+          rootMargin: CONFIG.OBSERVER_MARGIN,
+          threshold: CONFIG.OBSERVER_THRESHOLD
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+          observer.observe(card);
+        });
+      }
+
+      // Parallax Effects
+      function initParallax() {
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+          const currentScrollY = window.scrollY;
+          
+          // Hero background parallax
+          if (currentScrollY < CONFIG.PARALLAX_MAX_SCROLL) {
+            const heroBackground = document.getElementById('heroBackground');
+            if (heroBackground) {
+              const opacity = 1 - (currentScrollY / CONFIG.PARALLAX_OPACITY_FADE);
+              heroBackground.style.opacity = Math.max(0, opacity);
+            }
+            
+            // Hero image parallax on desktop
+            if (window.innerWidth > 1024) {
+              const heroImage = document.getElementById('heroImage');
+              if (heroImage) {
+                const y1 = currentScrollY * 0.3;
+                heroImage.style.transform = `translateY(${y1}px)`;
+              }
+            }
+          }
+          
+          lastScrollY = currentScrollY;
+        });
+      }
+    </script>
 </body>
 </html>

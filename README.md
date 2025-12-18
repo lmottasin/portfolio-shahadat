@@ -1,20 +1,65 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Shahadat Sayal - Portfolio
 
-# Run and deploy your AI Studio app
+A modern, vanilla JavaScript portfolio website for Shahadat Sayal, showcasing journalism and Communication for Development work.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/drive/112CVMepjZVIiHUUVzxTz2y-4YKqmP1so
+This portfolio website features:
+- Clean, minimalist design with smooth animations
+- Responsive layout for all devices
+- Project filtering functionality
+- Scroll-based animations and parallax effects
+- No build process required - pure HTML, CSS, and JavaScript
 
-## Run Locally
+## Technologies Used
 
-**Prerequisites:**  Node.js
+- **HTML5** - Semantic markup
+- **CSS3** - Custom animations and Tailwind CSS via CDN
+- **Vanilla JavaScript** - Interactive features and animations
+- **Intersection Observer API** - Scroll-based animations
 
+## Running Locally
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Simply open `index.html` in a modern web browser. No build process or dependencies required.
+
+For development with live reload, you can use any static server:
+
+```bash
+# Using Python
+python3 -m http.server 8000
+
+# Using Node.js http-server
+npx http-server
+
+# Then open http://localhost:8000
+```
+
+## Features
+
+- **Scroll Progress Bar** - Visual indicator of page scroll position
+- **Active Navigation** - Automatic section tracking and highlighting
+- **Project Filtering** - Filter projects by category
+- **Smooth Animations** - CSS-based animations with Intersection Observer
+- **Parallax Effects** - Subtle scroll-based motion effects
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+
+## Design Philosophy
+
+The design maintains a professional, editorial aesthetic with:
+- Dark theme with indigo accents
+- High contrast typography
+- Generous whitespace
+- Smooth transitions and hover effects
+- Accessible color contrasts
+
+## Browser Support
+
+Works in all modern browsers that support:
+- ES6 JavaScript
+- CSS Grid and Flexbox
+- Intersection Observer API
+- CSS backdrop-filter
+
+## License
+
+Private - All Rights Reserved
